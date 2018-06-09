@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Admin | Filtered Requests</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body  onload="showAdminReq('approved')">
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <main class="container">
+        <section class="card">
+            <p id="welcome">Filter Requests</p>
+            <div class="columns">
+                <div class="column">
+                    <div class="card-body centered">
+                        <a href="admin-view-request.html" class=" button primary">All Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
+                        <a href="admin-pending-request.html" class=" button primary">Pending Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
+                        <a href="admin-disapproved-request.html" class=" button primary">Disapproved Requests</a>
+                    </div> 
+                </div>
+                <div class="column">
+                    <div class="card-body centered">
+                        <a href="admin-resolved-request.html" class=" button primary">Resolved Requests</a>
+                    </div> 
+                </div>
+            </div>
+        </section>
+        <section class="card medium-card">
+            <div class="card-head" id="title">
+                Approved Requests
+            </div>
+            <!-- User requests will be injected here -->   
+            <ul class="card-body" id="approvedRequests"></ul>
+
+        </section>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Create Account</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li class="nav-left"><a href="index.html">Home</a></li>
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <main class="container">
+        <section class="form-card"> 
+            <div class="card-head primary">
+                Create an Account
+            </div>
+            <form name="signUpForm" action="dashboard.html">
+                <div class="form-section"> 
+                    <label for="firstName"><strong>First Name</strong></label>
+                    <input type="text" id="firstName" name="firstName" placeholder="First Name..." required>
+                </div>
+
+                <div class="form-section"> 
+                    <label for="lastName"><strong>Last Name</strong></label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Last Name..." required>
+                </div>
+
+                <div class="form-section">               
+                    <label for="name"><strong>Email Address</strong></label>
+                    <input type="email" id="email" name="email" placeholder="Email address..." required>
+                </div>          
+
+                <div class="form-section">
+                    <label for="password"><strong>Choose a Password</strong></label>
+                    <input type="password" id="password" name="password" placeholder="Password..." required>
+                </div>          
+
+                <div class="form-section">
+                    <label for="passwordConfirmation"><strong>Confirm Password</strong></label>
+                    <input type="password" id="passwordConfirmation" name="passwordConfirmation" placeholder="Confirm Password..." required>
+                </div>          
+
+                <div class="form-section">
+                    <label for="dept"><strong>Department</strong></label>
+                    <input type="text" id="dept" name="dept" placeholder="Department..." required>
+                </div>          
+
+                <div class="form-section">
+                    <label for="employeeCode"><strong>Employee Code</strong></label>
+                    <input type="text" id="employeeCode" name="employeeCode" minlength="5" maxlength="5" placeholder="Employee code..." required>
+                </div>
+                
+                <div id="signupError"></div>  
+
+                <div class="form-section">               
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            <p>Already have an account? <a href="login.html">Login</a></p>
+        </section>
+        
+    </main>
+    <script src="app.js"></script>
+    <script>
+        const signUpData = document.forms.signUpForm.elements;
+        function submit(event) {
+            const user = {};
+            const link = {
+                url: 'http://localhost:4000/api/v1/auth/signup',
+                method: 'POST',
+            };
+            event.preventDefault();
+            user.firstName = signUpData.firstName.value;
+            user.lastName = signUpData.lastName.value;
+            user.email = signUpData.email.value;
+            user.password = signUpData.password.value;
+            user.passwordConfirmation = signUpData.passwordConfirmation.value;
+            user.dept = signUpData.dept.value;
+            user.employeeCode = signUpData.employeeCode.value;
+
+            signUp(user, link);
+        }
+        document.forms.signUpForm.addEventListener('submit', submit);
+    </script>
+</body>
+</html>

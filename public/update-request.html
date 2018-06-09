@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Create Request</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="populate()">
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li class="nav-left"><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="#!" onclick="logout()">Logout</a></li> 
+                </ul>
+            </nav>
+        </section>
+    </header>
+    <main class="container">
+        <section class="form-card">
+            <div class="card-head primary">
+                Create a Request
+            </div>
+            <form name="updateForm" action="dashboard.html">
+                <div class="form-section">
+                    <label for="title"><strong>Request Title</strong></label>
+                    <input type="text" id="title" name="title" placeholder="Title of the request..." required>
+                </div>              
+
+                <div class="form-section">
+                    <label for="duration"><strong>Expected Duration of the Maintenance</strong></label>
+                    <input type="number" id="duration" name="duration" placeholder="How long will it take? (in days)" required>
+                </div>          
+
+                <div class="form-section">
+                    <label for="description"><strong>Request Description</strong></label>
+                    <textarea id="description" name="description" placeholder="Describe the requested maintenance and why it is necessary..." required></textarea>  
+                </div> 
+                
+                <div id="updateError"></div>
+
+                <div class="form-section">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+        </section>
+        
+    </main>
+    <script src="app.js"></script>
+    <script>
+        const data = document.forms.updateForm.elements;
+        function populate() {
+            const request = JSON.parse(localStorage.getItem('request'));
+            data.title.value = request.title;
+            data.duration.value = request.duration;
+            data.description.value = request.description;
+        }
+        function submit(event) {
+            const oldRequest = JSON.parse(localStorage.getItem('request'));         
+            event.preventDefault();
+            const link = {
+                url: `http://localhost:4000/api/v1/users/requests/${oldRequest.id}`,
+                method: 'PUT',
+            };
+            const request = {};
+            request.title = data.title.value;
+            request.duration = data.duration.value;
+            request.description = data.description.value;
+
+            updateRequest(request, link);
+        }
+        document.forms.updateForm.addEventListener('submit', submit);
+    </script>
+</body>
+</html>

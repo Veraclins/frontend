@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Maintenance Tracker | Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <section class="container">
+            <div class="header-brand">
+                <a href="index.html">Maintenance Tracker</a>
+            </div>
+            <nav>
+                <ul class="header-nav" role="navigation">
+                    <li class="nav-left"><a href="index.html">Home</a></li>
+                </ul> 
+            </nav>
+        </section>
+    </header>
+    <main class="container">
+        <section class="form-card">
+            <div class="card-head primary">
+                Login to your Account
+            </div>
+            <form name="loginForm" action="">
+                <div class="form-section">
+                    <label for="name"><strong>Email Address</strong></label>
+                    <input type="email" id="email" name="email" placeholder="Email address..." required>
+                </div>
+
+                <div class="form-section">
+                    <label for="password"><strong>Choose a Password</strong></label>
+                    <input type="password" id="password" name="password" placeholder="Password..." required>
+                </div>
+
+                <div id="loginError"></div>  
+
+                <div class="form-section">
+                    <input type="submit" value="Submit">
+                </div>
+            </form>
+            <p>No account? <a href="sign-up.html">Create Account</a></p>
+        </section>
+        
+    </main>
+    <script src="app.js"></script>
+    <script>
+        const loginData = document.forms.loginForm.elements;
+        function submit(e) {
+            const link = {
+                url: 'http://localhost:4000/api/v1/auth/login',
+                method: 'POST',
+            };
+            const user = {};
+            e.preventDefault();
+            user.email = loginData.email.value;
+            user.password = loginData.password.value;
+            
+            login(user, link);
+        }
+        document.forms.loginForm.addEventListener('submit', submit);
+    </script>
+</body>
+</html>
