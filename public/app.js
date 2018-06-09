@@ -1,3 +1,4 @@
+const baseURL = 'https://veraclins-m-tracker.herokuapp.com/api/v1'
 function fullName() {
   const user = JSON.parse(localStorage.getItem('user'));
   return `${user.lastName} ${user.firstName}`;
@@ -132,7 +133,7 @@ function adminReq(id) {
 
 function getRequest(id) {
   const token = localStorage.getItem('token');
-  fetchData(`http://localhost:4000/api/v1/users/requests/${id}`, {
+  fetchData(`${baseURL}/users/requests/${id}`, {
     method: 'GET',
     token,
   })
@@ -196,7 +197,7 @@ function displayRequests(request, id, type) {
 
 function getUserRequests() {
   const token = localStorage.getItem('token');
-  fetchData('http://localhost:4000/api/v1/users/requests', {
+  fetchData(`${baseURL}/users/requests`, {
     method: 'GET',
     token,
   })
@@ -220,7 +221,7 @@ function showAllAdminReq() {
 
 function getAdminRequests() {
   const token = localStorage.getItem('token');
-  fetchData('http://localhost:4000/api/v1/requests', {
+  fetchData(`${baseURL}/requests`, {
     method: 'GET',
     token,
   })
@@ -230,7 +231,7 @@ function getAdminRequests() {
 
 function adminUpdate(requestId, action) {
   const token = localStorage.getItem('token');
-  fetchData(`http://localhost:4000/api/v1/requests/${requestId}/${action}`, {
+  fetchData(`${baseURL}/requests/${requestId}/${action}`, {
     method: 'PUT',
     token,
   })

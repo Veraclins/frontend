@@ -51,7 +51,7 @@
         const loginData = document.forms.loginForm.elements;
         function submit(e) {
             const link = {
-                url: 'http://localhost:4000/api/v1/auth/login',
+                url: `${baseURL}/auth/login`,
                 method: 'POST',
             };
             const user = {};
